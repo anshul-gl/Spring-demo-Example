@@ -34,10 +34,10 @@ public class EmployeeServices
 		employees.add(employee);
 	}
 
-	public void updateEmployee(Employee employee) {
+	public void updateEmployee(int id, Employee employee) {
 		for(int i=0 ; i<employees.size() ; i++) {
 			Employee employeeObj = employees.get(i);
-			if(employeeObj.getEmployee_id() == employee.getEmployee_id())
+			if(employeeObj.getEmployee_id() == id)
 			{
 				employees.set(i, employee);
 			}

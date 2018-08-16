@@ -13,33 +13,37 @@ import com.example.demo.model.Employee;
 import com.example.demo.services.EmployeeServices;
 
 @RestController
+
+//base url
+@RequestMapping("/employee")
+
 public class EmployeeController {
 
 	@Autowired
 	private EmployeeServices service;
 
-	@RequestMapping(value = "/employees", method = RequestMethod.GET)
+	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public List<Employee> getAllEmployees() {
 
 		return service.getAllEmployees();
 	}
 
-	@RequestMapping(value = "/employee/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public Employee getEmployee(@PathVariable("id") int id) {
 		return service.getEmployee(id);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/employees")
+	@RequestMapping(method = RequestMethod.POST)
 	public void addEmployee(@RequestBody Employee Employee) {
 		service.addEmployee(Employee);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "/employee")
-	public void updateEmployee(@RequestBody Employee Employee) {
-		service.updateEmployee(Employee);
+	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+	public void updateEmployee(@PathVariable int id, @RequestBody Employee Employee) {
+		service.updateEmployee(id,Employee);
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE, value = "/employee/{id}")
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public void deleteEmployee(@PathVariable("id") int id) {
 		service.deleteEmployee(id);
 	}
